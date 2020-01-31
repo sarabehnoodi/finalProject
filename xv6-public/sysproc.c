@@ -107,6 +107,10 @@ int sys_readerwriterInit(void){
     return 0;
 }
 int sys_readerwriterTest(void){
-    readerwriterTest();
-    return 0;
+    int n;
+    if(argint(0, &n) < 0)
+      return -1;
+    return readerwriterTest(n);
 } 
+
+ 

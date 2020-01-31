@@ -12,11 +12,15 @@ struct {
   struct ticketlock ticket1;
   struct spinlock lock;
   struct proc proc[NPROC];
+  struct ticketlock w;
+  struct ticketlock m;
 } ptable;
 
 static struct proc *initproc;
 
 int nextpid = 1;
+int rc;
+int bf;
 extern void forkret(void);
 extern void trapret(void);
 
@@ -535,19 +539,44 @@ procdump(void)
   }
 }
 
-  void ticketLockTest(void){
+void ticketLockTest(void){
     acquire_t(&ptable.ticket1);
     cprintf("%d",10);
     release_t(&ptable.ticket1);
-  }
+}
 
-    void ticketLockInit(void){
-    initlock_t(&ptable.ticket1,"ticket test");
+void ticketLockInit(void){
+  initlock_t(&ptable.ticket1,"ticket test");
+}
+void readerwriterInit(void){
+  rc=0;
+  bf=0;
+}
+int readerwriterTtest(int k){
+  int r =0;
+  if(k == 1){
+      acquire_t(&ptable.w);
+      bf = 5;
+      release_t(&ptable.w);
   }
-  void readerwriterInit(void){
+  else {
+      acquire_t(&ptable.m);
+      rc++;
+      if(rc == 1)
+          acquire_t(&ptable.w);
+      release_t(&ptable.m);
+
+      r = bf;
+      acquire_t(&ptable.m);
+      rc--;
+      if(rc == 0)
+        release_t(&ptable.w);
+      release_t(&ptable.m);
+
+  }
+  return r;
 
 }
-void readerwriterTtest(void){
 
-}
+
 
