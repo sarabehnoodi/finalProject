@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "ticketLock.h"
 
 int
 sys_fork(void)
@@ -88,4 +89,15 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+int 
+sys_ticketLockInit(void){
+  ticketLockInit();
+  return 0;
+}
+int 
+SYS_ticketLockTest(void){
+  ticketLockTest();
+  return 0;
 }
