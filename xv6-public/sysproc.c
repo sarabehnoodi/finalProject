@@ -101,3 +101,12 @@ SYS_ticketLockTest(void){
   ticketLockTest();
   return 0;
 }
+
+int sys_readerwriterInit(void){
+    readerwriterInit();
+    return 0;
+}
+int sys_readerwriterTest(void){
+    readerwriterTest();
+    return 0;
+} 

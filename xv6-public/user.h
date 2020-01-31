@@ -25,6 +25,8 @@ int sleep(int);
 int uptime(void);
 int ticketLockInit(void);
 int ticketLockTest(void);
+int readerwriterInit(void);
+int readerwriterTest(void);
 
 
 

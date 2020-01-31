@@ -22,4 +22,5 @@
 #define SYS_close  21
 #define SYS_ticketLockInit  22
 #define SYS_ticketLockTest  23
-
+#define SYS_readerwriterInit  24
+#define SYS_readerwriterTest  25

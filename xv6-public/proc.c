@@ -533,6 +533,7 @@ procdump(void)
     }
     cprintf("\n");
   }
+  
   void ticketLockTest(void){
     acquire_t(&ptable.ticket1);
     cprintf("%d",10);
