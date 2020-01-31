@@ -533,7 +533,8 @@ procdump(void)
     }
     cprintf("\n");
   }
-  
+}
+
   void ticketLockTest(void){
     acquire_t(&ptable.ticket1);
     cprintf("%d",10);
@@ -543,4 +544,10 @@ procdump(void)
     void ticketLockInit(void){
     initlock_t(&ptable.ticket1,"ticket test");
   }
+  void readerwriterInit(void){
+
 }
+void readerwriterTtest(void){
+
+}
+
